@@ -27,6 +27,7 @@
     </string>
 
     <!-- Menu -->
+    <string name="minha_carteira">Minha carteira</string>
     <string name="logout">Sair</string>
 
     <!-- Títulos de Telas -->

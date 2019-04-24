@@ -12,9 +12,6 @@ public class UsuarioRepository {
     }
 
     public String adiciona(Usuario usuario) {
-        int a = 0;
-        int result = 1 / a;
-
         return "Usuário adicionado com sucesso!";
     }
 }

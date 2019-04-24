@@ -2,18 +2,27 @@ package com.felipemdmelo.vaccine.models;
 
 public class Vacina {
 
+    private int id;
     private String nome;
     private VacinaDose dose;
     private String doencasEvitadas;
     private int idade;
 
-    public Vacina(String nome, VacinaDose dose, String doencasEvitadas, int idade) {
+    public Vacina(int id, String nome, VacinaDose dose, String doencasEvitadas, int idade) {
+        this.id = id;
         this.nome = nome;
         this.dose = dose;
         this.doencasEvitadas = doencasEvitadas;
         this.idade = idade;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;

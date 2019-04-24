@@ -1,12 +1,20 @@
 package com.felipemdmelo.vaccine.activities;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.felipemdmelo.vaccine.R;
 import com.felipemdmelo.vaccine.activities.base.BaseActivity;
 import com.felipemdmelo.vaccine.models.PostoSaude;
+import com.felipemdmelo.vaccine.models.PostoSaudeEstoque;
 import com.felipemdmelo.vaccine.repositories.PostoSaudeRepository;
 import com.felipemdmelo.vaccine.sharedprefs.UsuarioSharedPref;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -14,6 +22,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -52,6 +61,9 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            case R.id.minha_carteira_menu:
+                irPara(this, MinhaCarteiraActivity.class);
+                return true;
             case R.id.logout_menu:
                 logout();
                 return true;
@@ -74,6 +86,43 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
         mMap = googleMap;
 
         carregaPostoSaude();
+        
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker marker) {
+                PostoSaude postoSaude = (PostoSaude) marker.getTag();
+
+                LinearLayout ll = new LinearLayout(MapsActivity.this);
+                ll.setPadding(20, 20, 20, 20);
+                ll.setBackgroundColor(Color.WHITE);
+                ll.setOrientation(LinearLayout.VERTICAL);
+
+                TextView postoSaudeNomeTextView = new TextView(MapsActivity.this);
+                SpannableString spanString = new SpannableString(postoSaude.getNome());
+                spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
+                postoSaudeNomeTextView.setText(spanString);
+                ll.addView(postoSaudeNomeTextView);
+
+                List<PostoSaudeEstoque> postoSaudeEstoqueList = postoSaude.getPostoSaudeEstoque();
+                for (PostoSaudeEstoque postoSaudeEstoque :
+                        postoSaudeEstoqueList) {
+
+                    TextView tv = new TextView(MapsActivity.this);
+                    tv.setText(postoSaudeEstoque.getVacina().getNome() + ": " + postoSaudeEstoque.getQtd());
+                    ll.addView(tv);
+
+                }
+
+                return ll;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+                return null;
+            }
+        });
     }
 
     private void initAtributos() {
@@ -102,10 +151,13 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
 
         if(latitude != 0 && longitude != 0) {
             LatLng postoSaudeLatLng = new LatLng(latitude, longitude);
-            mMap.addMarker(
+            Marker marker =  mMap.addMarker(
                     new MarkerOptions()
                             .position(postoSaudeLatLng)
                             .title(postoSaude.getNome()));
+
+            marker.setTag(postoSaude);
+
             mMap.moveCamera(CameraUpdateFactory.newLatLng(postoSaudeLatLng));
         }
     }

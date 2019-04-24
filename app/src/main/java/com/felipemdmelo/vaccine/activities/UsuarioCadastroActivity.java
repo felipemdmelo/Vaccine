@@ -47,6 +47,8 @@ public class UsuarioCadastroActivity extends BaseActivity {
 
             String msg = usuarioRepository.adiciona(usuario);
 
+            irPara(this, LoginActivity.class);
+
             Toast.makeText(this,
                     msg,
                     Toast.LENGTH_LONG).show();

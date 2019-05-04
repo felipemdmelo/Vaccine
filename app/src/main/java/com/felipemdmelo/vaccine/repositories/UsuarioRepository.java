@@ -7,8 +7,11 @@ import java.sql.Date;
 public class UsuarioRepository {
 
     public Usuario validaLogin(String login, String senha) {
-        Date dataNascimento = Date.valueOf("1988-10-21");
-        return new Usuario("123321123321", "Felipe Melo", dataNascimento);
+        if(login.equals("fmdm") && senha.equals("2110")) {
+            Date dataNascimento = Date.valueOf("1988-10-21");
+            return new Usuario("111222333", "Felipe Melo", dataNascimento);
+        }
+        return null;
     }
 
     public String adiciona(Usuario usuario) {

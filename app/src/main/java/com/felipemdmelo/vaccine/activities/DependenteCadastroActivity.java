@@ -7,12 +7,16 @@ import android.widget.Toast;
 
 import com.felipemdmelo.vaccine.R;
 import com.felipemdmelo.vaccine.activities.base.BaseActivity;
-import com.felipemdmelo.vaccine.models.Usuario;
-import com.felipemdmelo.vaccine.repositories.UsuarioRepository;
+import com.felipemdmelo.vaccine.application.App;
+import com.felipemdmelo.vaccine.models.Dependente;
+import com.felipemdmelo.vaccine.repositories.DependenteRepository;
+import com.felipemdmelo.vaccine.sharedprefs.UsuarioSharedPref;
 
-public class UsuarioCadastroActivity extends BaseActivity {
+public class DependenteCadastroActivity extends BaseActivity {
 
-    private UsuarioRepository usuarioRepository;
+    private DependenteRepository dependenteRepository;
+
+    private UsuarioSharedPref usuarioSharedPref;
 
     EditText numeroCarteiraEdt;
     EditText nomeEdt;
@@ -21,13 +25,15 @@ public class UsuarioCadastroActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usuario_cadastro);
+        setContentView(R.layout.activity_dependente_cadastro);
 
         initAtributos();
     }
 
     public void initAtributos() {
-        this.usuarioRepository = new UsuarioRepository();
+        this.dependenteRepository = new DependenteRepository((App) getApplication());
+
+        this.usuarioSharedPref = new UsuarioSharedPref(this);
 
         numeroCarteiraEdt = findViewById(R.id.numeroCarteiraEdt);
         nomeEdt = findViewById(R.id.nomeEdt);
@@ -37,14 +43,15 @@ public class UsuarioCadastroActivity extends BaseActivity {
     public void salvarBtnClick(View view) {
         try {
             String numeroCarteira = numeroCarteiraEdt.getText().toString();
+            String numeroCarteiraPai = this.usuarioSharedPref.getUsuario().getNumeroCarteira();
             String nome = nomeEdt.getText().toString();
             String dataNascimentoStr = dataNascimentoEdt.getText().toString();
 
-            Usuario usuario = new Usuario(numeroCarteira, nome, dataNascimentoStr);
+            Dependente dependente = new Dependente(null, numeroCarteira, numeroCarteiraPai, nome, dataNascimentoStr);
 
-            String msg = usuarioRepository.adiciona(usuario);
+            String msg = dependenteRepository.insert(dependente);
 
-            irPara(this, LoginActivity.class);
+            irPara(this, MeusDependentesActivity.class);
 
             Toast.makeText(this,
                     msg,

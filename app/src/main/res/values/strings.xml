@@ -28,8 +28,15 @@
 
     <!-- Menu -->
     <string name="minha_carteira">Minha carteira</string>
+    <string name="meus_dependentes">Meus dependentes</string>
+    <string name="novo_dependente">Novo dependente</string>
     <string name="logout">Sair</string>
 
     <!-- Títulos de Telas -->
-    <string name="title_activity_maps">Vaccine - Posto de Saúde</string>
+    <string name="title_activity_maps">Postos de Saúde</string>
+    <string name="title_activity_meus_dependentes">Meus dependentes</string>
+    <string name="title_activity_minha_carteira">Minha carteira</string>
+    <string name="title_activity_usuario_cadastro">Cadastro de usuário</string>
+    <string name="title_activity_dependente_cadastro">Cadastro de dependente</string>
+    <string name="title_activity_login">Entre</string>
 </resources>

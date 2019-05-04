@@ -37,7 +37,8 @@
         app:layout_constraintTop_toBottomOf="@+id/loginTxt"
         android:layout_marginTop="@dimen/margem_menor"
         android:layout_marginLeft="@dimen/margem_padrao"
-        android:layout_marginRight="@dimen/margem_padrao" />
+        android:layout_marginRight="@dimen/margem_padrao"
+        android:text="fmdm" />
 
     <TextView
         android:id="@+id/senhaTxt"
@@ -58,7 +59,8 @@
         app:layout_constraintTop_toBottomOf="@+id/senhaTxt"
         android:layout_marginTop="@dimen/margem_menor"
         android:layout_marginLeft="@dimen/margem_padrao"
-        android:layout_marginRight="@dimen/margem_padrao" />
+        android:layout_marginRight="@dimen/margem_padrao"
+        android:text="2110" />
 
     <Button
         android:id="@+id/entrarBtn"

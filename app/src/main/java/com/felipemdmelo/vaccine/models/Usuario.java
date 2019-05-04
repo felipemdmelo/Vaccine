@@ -1,17 +1,15 @@
 package com.felipemdmelo.vaccine.models;
 
-import java.sql.Date;
-
 public class Usuario {
 
     private String numeroCarteira;
     private String nome;
-    private Date dataNascimento;
+    private String dataNascimento;
 
-    public Usuario(String numeroCarteira, String nome, Date dataNascimento) {
-        this.numeroCarteira = numeroCarteira;
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
+    public Usuario(String numeroCarteira, String nome, String dataNascimento) {
+        this.setNumeroCarteira(numeroCarteira);
+        this.setNome(nome);
+        this.setDataNascimento(dataNascimento);
     }
 
     public String getNumeroCarteira() {
@@ -30,11 +28,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 }

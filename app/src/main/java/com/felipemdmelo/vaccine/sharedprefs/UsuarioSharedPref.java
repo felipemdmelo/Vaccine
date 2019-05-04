@@ -6,8 +6,6 @@ import android.content.SharedPreferences;
 import com.felipemdmelo.vaccine.R;
 import com.felipemdmelo.vaccine.models.Usuario;
 
-import java.sql.Date;
-
 public class UsuarioSharedPref {
 
     private Context context;
@@ -52,9 +50,8 @@ public class UsuarioSharedPref {
         String dataNascimentoStr = this.sharedPref.getString(
                 this.context.getString(R.string.usuario_data_nascimento_key),
                 null);
-        Date dataNascimento = Date.valueOf(dataNascimentoStr);
 
-        return new Usuario(numeroCarteira, nome, dataNascimento);
+        return new Usuario(numeroCarteira, nome, dataNascimentoStr);
     }
 
     public Boolean isUsuarioLogado() {

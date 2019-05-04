@@ -1,5 +1,6 @@
 package com.felipemdmelo.vaccine.repositories;
 
+import com.felipemdmelo.vaccine.application.App;
 import com.felipemdmelo.vaccine.models.PostoSaude;
 import com.felipemdmelo.vaccine.models.PostoSaudeEstoque;
 import com.felipemdmelo.vaccine.models.Vacina;
@@ -13,8 +14,8 @@ public class PostoSaudeRepository {
 
     private final VacinaRepository vacinaRepository;
 
-    public PostoSaudeRepository() {
-        this.vacinaRepository = new VacinaRepository();
+    public PostoSaudeRepository(App app) {
+        this.vacinaRepository = new VacinaRepository(app);
     }
 
     public List<PostoSaude> getAll() {

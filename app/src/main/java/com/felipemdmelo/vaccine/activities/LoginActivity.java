@@ -7,14 +7,20 @@ import android.widget.Toast;
 
 import com.felipemdmelo.vaccine.R;
 import com.felipemdmelo.vaccine.activities.base.BaseActivity;
+import com.felipemdmelo.vaccine.application.App;
 import com.felipemdmelo.vaccine.models.Usuario;
+import com.felipemdmelo.vaccine.repositories.MinhaVacinaRepository;
 import com.felipemdmelo.vaccine.repositories.UsuarioRepository;
+import com.felipemdmelo.vaccine.repositories.VacinaRepository;
 import com.felipemdmelo.vaccine.sharedprefs.UsuarioSharedPref;
 
 public class LoginActivity extends BaseActivity {
 
     private UsuarioSharedPref usuarioSharedPref;
+
     private UsuarioRepository usuarioRepository;
+    private VacinaRepository vacinaRepository;
+    private MinhaVacinaRepository minhaVacinaRepository;
 
     EditText loginEdt;
     EditText senhaEdt;
@@ -25,11 +31,19 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         initAtributos();
+
+        initDatabase();
+    }
+
+    private void initDatabase() {
+        vacinaRepository.initTable();
     }
 
     public void initAtributos() {
         this.usuarioSharedPref = new UsuarioSharedPref(this);
         this.usuarioRepository = new UsuarioRepository();
+        this.vacinaRepository = new VacinaRepository((App) getApplication());
+        this.minhaVacinaRepository = new MinhaVacinaRepository((App) getApplication());
 
         loginEdt = findViewById(R.id.loginEdt);
         senhaEdt = findViewById(R.id.senhaEdt);
@@ -44,6 +58,9 @@ public class LoginActivity extends BaseActivity {
 
             if(usuario != null) {
                 usuarioSharedPref.putUsuario(usuario);
+
+                minhaVacinaRepository.initTable(usuario.getNumeroCarteira());
+
                 irPara(this, MapsActivity.class);
             } else {
                 Toast.makeText(this,

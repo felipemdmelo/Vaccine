@@ -10,10 +10,10 @@ public class PostoSaude {
     private List<PostoSaudeEstoque> postoSaudeEstoque;
 
     public PostoSaude(String nome, String latitude, String longitude, List<PostoSaudeEstoque> postoSaudeEstoque) {
-        this.nome = nome;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.postoSaudeEstoque = postoSaudeEstoque;
+        this.setNome(nome);
+        this.setLatitude(latitude);
+        this.setLongitude(longitude);
+        this.setPostoSaudeEstoque(postoSaudeEstoque);
     }
 
     public String getNome() {

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.DependenteCadastroActivity">
+
+    <TextView
+        android:id="@+id/numeroCarteiraTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/numero_carteira"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/margem_padrao" />
+
+    <EditText
+        android:id="@+id/numeroCarteiraEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/numeroCarteiraTxt"
+        android:layout_marginTop="@dimen/margem_menor"
+        android:layout_marginLeft="@dimen/margem_padrao"
+        android:layout_marginRight="@dimen/margem_padrao" />
+
+    <TextView
+        android:id="@+id/nomeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nome"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/numeroCarteiraEdt"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/margem_padrao" />
+
+    <EditText
+        android:id="@+id/nomeEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/nomeTxt"
+        android:layout_marginTop="@dimen/margem_menor"
+        android:layout_marginLeft="@dimen/margem_padrao"
+        android:layout_marginRight="@dimen/margem_padrao" />
+
+    <TextView
+        android:id="@+id/dataNascimentoTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_nascimento"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/nomeEdt"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/margem_padrao" />
+
+    <EditText
+        android:id="@+id/dataNascimentoEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/dataNascimentoTxt"
+        android:layout_marginTop="@dimen/margem_menor"
+        android:layout_marginLeft="@dimen/margem_padrao"
+        android:layout_marginRight="@dimen/margem_padrao" />
+
+    <Button
+        android:id="@+id/salvarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/salvar_btn"
+        android:onClick="salvarBtnClick"
+        app:layout_constraintTop_toBottomOf="@+id/dataNascimentoEdt"
+        android:layout_marginTop="@dimen/margem_padrao"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

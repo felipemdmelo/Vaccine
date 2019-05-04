@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.felipemdmelo.vaccine.R;
 import com.felipemdmelo.vaccine.activities.base.BaseActivity;
+import com.felipemdmelo.vaccine.application.App;
 import com.felipemdmelo.vaccine.models.PostoSaude;
 import com.felipemdmelo.vaccine.models.PostoSaudeEstoque;
 import com.felipemdmelo.vaccine.repositories.PostoSaudeRepository;
@@ -63,6 +64,9 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
         switch (item.getItemId()) {
             case R.id.minha_carteira_menu:
                 irPara(this, MinhaCarteiraActivity.class);
+                return true;
+            case R.id.meus_dependentes_menu:
+                irPara(this, MeusDependentesActivity.class);
                 return true;
             case R.id.logout_menu:
                 logout();
@@ -127,7 +131,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback {
 
     private void initAtributos() {
         this.usuarioSharedPref = new UsuarioSharedPref(this);
-        this.postoSaudeRepository = new PostoSaudeRepository();
+        this.postoSaudeRepository = new PostoSaudeRepository((App) getApplication());
     }
 
     private void verificaUsuarioLogado() {

@@ -6,8 +6,8 @@ public class PostoSaudeEstoque {
     private int qtd;
 
     public PostoSaudeEstoque(Vacina vacina, int qtd) {
-        this.vacina = vacina;
-        this.qtd = qtd;
+        this.setVacina(vacina);
+        this.setQtd(qtd);
     }
 
     public Vacina getVacina() {

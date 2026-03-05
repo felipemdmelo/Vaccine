@@ -22,6 +22,7 @@
         android:id="@+id/numeroCarteiraEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="text"
         app:layout_constraintTop_toBottomOf="@+id/numeroCarteiraTxt"
         android:layout_marginTop="@dimen/margem_menor"
         android:layout_marginLeft="@dimen/margem_padrao"
@@ -43,6 +44,7 @@
         android:id="@+id/nomeEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textPersonName"
         app:layout_constraintTop_toBottomOf="@+id/nomeTxt"
         android:layout_marginTop="@dimen/margem_menor"
         android:layout_marginLeft="@dimen/margem_padrao"
@@ -64,7 +66,53 @@
         android:id="@+id/dataNascimentoEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="dd/mm/aaaa"
         app:layout_constraintTop_toBottomOf="@+id/dataNascimentoTxt"
+        android:layout_marginTop="@dimen/margem_menor"
+        android:layout_marginLeft="@dimen/margem_padrao"
+        android:layout_marginRight="@dimen/margem_padrao" />
+
+    <TextView
+        android:id="@+id/senhaTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Senha"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/dataNascimentoEdt"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/margem_padrao" />
+
+    <EditText
+        android:id="@+id/senhaEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/senhaTxt"
+        android:layout_marginTop="@dimen/margem_menor"
+        android:layout_marginLeft="@dimen/margem_padrao"
+        android:layout_marginRight="@dimen/margem_padrao" />
+
+    <TextView
+        android:id="@+id/confirmarSenhaTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirmar Senha"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/senhaEdt"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="@dimen/margem_padrao" />
+
+    <EditText
+        android:id="@+id/confirmarSenhaEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/confirmarSenhaTxt"
         android:layout_marginTop="@dimen/margem_menor"
         android:layout_marginLeft="@dimen/margem_padrao"
         android:layout_marginRight="@dimen/margem_padrao" />
@@ -75,7 +123,7 @@
         android:layout_height="wrap_content"
         android:text="@string/salvar_btn"
         android:onClick="salvarBtnClick"
-        app:layout_constraintTop_toBottomOf="@+id/dataNascimentoEdt"
+        app:layout_constraintTop_toBottomOf="@+id/confirmarSenhaEdt"
         android:layout_marginTop="@dimen/margem_padrao"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

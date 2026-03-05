@@ -13,6 +13,7 @@ import com.felipemdmelo.vaccine.repositories.MinhaVacinaRepository;
 import com.felipemdmelo.vaccine.repositories.UsuarioRepository;
 import com.felipemdmelo.vaccine.repositories.VacinaRepository;
 import com.felipemdmelo.vaccine.sharedprefs.UsuarioSharedPref;
+import com.felipemdmelo.vaccine.utils.PasswordUtils;
 
 public class LoginActivity extends BaseActivity {
 
@@ -22,8 +23,8 @@ public class LoginActivity extends BaseActivity {
     private VacinaRepository vacinaRepository;
     private MinhaVacinaRepository minhaVacinaRepository;
 
-    EditText loginEdt;
-    EditText senhaEdt;
+    private EditText loginEdt;
+    private EditText senhaEdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,9 @@ public class LoginActivity extends BaseActivity {
         vacinaRepository.initTable();
     }
 
-    public void initAtributos() {
+    private void initAtributos() {
         this.usuarioSharedPref = new UsuarioSharedPref(this);
-        this.usuarioRepository = new UsuarioRepository();
+        this.usuarioRepository = new UsuarioRepository((App) getApplication());
         this.vacinaRepository = new VacinaRepository((App) getApplication());
         this.minhaVacinaRepository = new MinhaVacinaRepository((App) getApplication());
 
@@ -51,25 +52,28 @@ public class LoginActivity extends BaseActivity {
 
     public void entrarBtnClick(View view) {
         try {
-            String login = loginEdt.getText().toString();
+            String login = loginEdt.getText().toString().trim();
             String senha = senhaEdt.getText().toString();
 
-            Usuario usuario = usuarioRepository.validaLogin(login, senha);
+            if (login.isEmpty() || senha.isEmpty()) {
+                Toast.makeText(this, "Preencha login e senha.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-            if(usuario != null) {
+            String senhaHash = PasswordUtils.hash(senha);
+            Usuario usuario = usuarioRepository.validaLogin(login, senhaHash);
+
+            if (usuario != null) {
                 usuarioSharedPref.putUsuario(usuario);
-
                 minhaVacinaRepository.initTable(usuario.getNumeroCarteira());
-
                 irPara(this, MapsActivity.class);
             } else {
                 Toast.makeText(this,
-                        "Login e/ou senha inválidos!",
+                        "Login e/ou senha inv\u00e1lidos!",
                         Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
-            // TODO: registrar o erro em log
-
+            android.util.Log.e("LoginActivity", "Erro ao realizar login", e);
             Toast.makeText(this,
                     getString(R.string.erro_generico),
                     Toast.LENGTH_LONG).show();

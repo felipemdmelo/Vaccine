@@ -1,6 +1,6 @@
 package com.felipemdmelo.vaccine.utils;
 
-java.security.MessageDigest;
+import java.security.MessageDigest;
 
 public class PasswordUtils {
 
